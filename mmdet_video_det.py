@@ -52,7 +52,7 @@ class Camera(object):
         depthx_image = np.asanyarray(aligned_depth_frame.get_data())
         color_image = np.asanyarray(color_frame.get_data())
         colorizer_depth = np.asanyarray(colorizer.colorize(aligned_depth_frame).get_data())
-        return color_image, depthx_image,colorizer_depth
+        return color_image, depthx_image, colorizer_depth
 
     def release(self):
         self.pipeline.stop()
