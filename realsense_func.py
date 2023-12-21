@@ -43,7 +43,9 @@ class RealSense:
     #     # dis = aligned_depth_frame.get_distance(x, y)
     #     # camera_coordinate = rs.rs2_deproject_pixel_to_point(depth_intrin, [x, y], dis)
     #     # return camera_coordinate # reture x,y,z
-    def get_point_coodinate(self, aligned_depth_frame, x, y):
+    def get_point_coodinate(self, aligned_depth_frame, dim):
+        x = dim[0]
+        y = dim[1]
         dis = aligned_depth_frame.get_distance(x, y)
         camera_coordinate = rs.rs2_deproject_pixel_to_point(self.depth_intrin, [x, y], dis)
         return camera_coordinate
