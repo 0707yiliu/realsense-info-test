@@ -13,7 +13,7 @@ class RealSense:
         config = rs.config()  # define configuration
         config.enable_stream(rs.stream.depth, depx, depy, rs.format.z16, fps)
         config.enable_stream(rs.stream.color, bgrx, bgry, rs.format.bgr8, fps)
-        self.profile = pipeline.start(config)
+        self.profile = self.pipeline.start(config)
         align_to = rs.stream.color  # algin color stream
         self.align = rs.align(align_to)
         _, _, _, _, _= self.get_aligned_images() # init the first frame
@@ -36,7 +36,7 @@ class RealSense:
         depth_image_8bit = cv2.convertScaleAbs(depth_image, alpha=0.03)
         depth_image_3d = np.dstack((depth_image_8bit, depth_image_8bit, depth_image_8bit))
         color_image = np.asanyarray(color_frame.get_data())
-        return intr, depth_intrin, color_image, depth_image, aligned_depth_frame
+        return intr, self.depth_intrin, color_image, depth_image, aligned_depth_frame
 
     # def get_info(self, x=320, y=320):
     #     intr, depth_intrin, rgb, depth, aligned_depth_frame = self.get_aligned_images()
